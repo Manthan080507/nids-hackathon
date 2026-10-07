@@ -33,37 +33,6 @@ meta_tags = """
 """
 st.markdown(meta_tags, unsafe_allow_html=True)
 
-# ==========================================
-# 2. FAST RELIABLE CLIENT IP & GEOLOCATION
-# ==========================================
-def get_client_info():
-    # Primary Service: ip-api.com
-    try:
-        r = requests.get('http://ip-api.com/json/', timeout=3)
-        if r.status_code == 200:
-            data = r.json()
-            if data.get('status') == 'success':
-                return f"{data.get('query')} ({data.get('city')}, {data.get('country')})"
-    except Exception:
-        pass
-        
-    # Backup Service: ipify + ipinfo
-    try:
-        r = requests.get('https://api.ipify.org?format=json', timeout=3)
-        if r.status_code == 200:
-            ip = r.json().get('ip')
-            r_loc = requests.get(f'https://ipinfo.io/{ip}/json', timeout=3)
-            if r_loc.status_code == 200:
-                loc_data = r_loc.json()
-                return f"{ip} ({loc_data.get('city', 'Active Gateway')}, {loc_data.get('country', 'IN')})"
-            return f"{ip} (Active Gateway Node)"
-    except Exception:
-        pass
-
-    return "103.15.244.18 (Bengaluru, India)"
-
-node_display_name = get_client_info()
-
 # Network Metrics
 net_io = psutil.net_io_counters()
 bytes_sent_mb = net_io.bytes_sent / (1024 * 1024)
@@ -71,7 +40,7 @@ bytes_recv_mb = net_io.bytes_recv / (1024 * 1024)
 active_connections = len(psutil.net_connections())
 
 # ==========================================
-# 3. DASHBOARD HEADER & SYSTEM METRICS
+# 2. DASHBOARD HEADER & SYSTEM METRICS
 # ==========================================
 st.title("🛡️ Real-Time Network Intrusion Detection System")
 st.caption("Live Traffic Inspector • CSV Dataset Inspector • Real Threat Intelligence")
@@ -81,7 +50,30 @@ col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     st.caption("Connected Client / Node")
-    st.subheader(node_display_name)
+    # Interactive Browser Geolocation Card
+    st.components.v1.html("""
+        <div id="client-info" style="font-family: sans-serif; color: #FAFAFA; font-weight: 600; font-size: 1.1rem; line-height: 1.3;">
+            Detecting local browser node...
+        </div>
+        <script>
+            async function getBrowserLocation() {
+                try {
+                    const res = await fetch('https://ipapi.co/json/');
+                    const data = await res.json();
+                    document.getElementById('client-info').innerHTML = `
+                        <div style="font-size: 1.25rem; font-weight: 700;">${data.ip}</div>
+                        <div style="font-size: 0.95rem; color: #00D4FF;">📍 ${data.city}, ${data.country_name}</div>
+                    `;
+                } catch (e) {
+                    document.getElementById('client-info').innerHTML = `
+                        <div style="font-size: 1.1rem;">Active Local Node</div>
+                        <div style="font-size: 0.9rem; color: #00D4FF;">📍 Client Gateway</div>
+                    `;
+                }
+            }
+            getBrowserLocation();
+        </script>
+    """, height=70)
 
 with col2:
     st.caption("Total Bytes Sent")
@@ -98,7 +90,7 @@ with col4:
 st.markdown("---")
 
 # ==========================================
-# 4. NAVIGATION & SYSTEM MODULES
+# 3. NAVIGATION & SYSTEM MODULES
 # ==========================================
 tab1, tab2, tab3, tab4 = st.tabs([
     "🏠 Dashboard", 
