@@ -1,0 +1,33 @@
+ACTIVITY 12: PROMPT LOG & REFLECTION
+
+--- INITIAL GENERATION PROMPT ---
+"Build a clean, responsive single-page HTML/CSS personal portfolio blog for a 3rd-semester B.Tech CS&IT student named Manthan Prabhu from REVA University.
+
+The page should have a dark, professional tech theme and include the following sections:
+1. Header: Name, Title (2nd Year CS&IT Student @ REVA University), Location.
+2. About Me: Short summary covering core programming background.
+3. Projects: Showcase two GitHub repositories:
+   - LeetCode Solutions Portfolio (https://github.com/Manthan080507/leetcode-solutions)
+   - HackerRank 3rd Sem Portfolio (https://github.com/Manthan080507/HackerRank-3rdSem-Portfolio)
+4. Skills: C, C++, Python, MySQL, Data Structures, Git & GitHub.
+5. Career Goal: Seeking software development internships.
+6. Footer: Links to GitHub (https://github.com/Manthan080507) and LinkedIn (https://www.linkedin.com/in/manthanprabhu08).
+
+Output everything inside a single HTML file using embedded CSS."
+
+--- FOLLOW-UP REFINEMENT PROMPTS ---
+
+Refinement 1:
+- Prompt: "The initial CSS used a light background. Change the entire theme to a dark tech aesthetic using #0f172a for the background and #2563eb for blue accents."
+- Change: Updated color scheme to dark mode and improved visual contrast across card components.
+
+Refinement 2:
+- Prompt: "Add action buttons linking directly to my GitHub repositories under each project card, and make sure external links open in a new tab using target='_blank'."
+- Change: Added 'View Repository' buttons with proper external links to my LeetCode and HackerRank repos.
+
+--- REFLECTION ---
+1. Which prompt produced the biggest improvement?
+The prompt requesting a dark mode theme (#0f172a background with blue accents) made the biggest difference, transforming a plain layout into a modern developer portfolio.
+
+2. One thing the AI got wrong that had to be corrected:
+The AI initially generated generic placeholder links (like 'github.com/example'). I had to refine the prompt to enforce my exact GitHub repository URLs.

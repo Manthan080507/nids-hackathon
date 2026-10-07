@@ -1,0 +1,22 @@
+PORTFOLIO BRIEF — MANTHAN PRABHU
+
+1. Personal Information & Bio:
+- Name: Manthan Prabhu
+- Semester & Branch: 3rd Semester, B.Tech in Computer Science & Information Technology (CS&IT)
+- Institution: REVA University, Bengaluru
+- GitHub Profile: https://github.com/Manthan080507
+- Bio: I am a 2nd-year Computer Science & Information Technology student at REVA University passionate about core programming, algorithmic problem-solving, and building software projects. I focus on writing efficient code and developing hands-on technical skills in C, C++, Python, MySQL, and Data Structures.
+
+2. Core Projects & Artifacts (Activities 1–4):
+- Hello World & Git Setup: Initial repository setting up VS Code, Git version control, and GitHub integration.
+- Pair-Programming Collaboration Log: Collaborative Git workflow tracking pair programming, branch merging, and pull requests.
+- LeetCode Solutions Portfolio: Repository (https://github.com/Manthan080507/leetcode-solutions) documenting algorithmic problem-solving with time and space complexity analysis in C and C++.
+- HackerRank 3rd Sem Portfolio: Repository (https://github.com/Manthan080507/HackerRank-3rdSem-Portfolio) containing structured solutions to semester coding challenges.
+
+3. Technical Skills:
+- Languages: C, C++, Python, SQL
+- Database & Tools: MySQL, Git, GitHub, VS Code
+- Domain Focus: Data Structures & Algorithms (DSA), System Design Basics, IoT Projects
+
+4. Career & Learning Goal:
+To secure a Software Engineering internship where I can contribute to production-level codebases, build scalable software solutions, and deepen my expertise in algorithms and software architecture.

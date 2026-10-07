@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manthan Prabhu | Developer Portfolio</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-light: #f1f5f9;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid #334155;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        section {
+            margin: 2.5rem 0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #ffffff;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            padding-bottom: 0.3rem;
+            margin-bottom: 1.2rem;
+        }
+
+        p {
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .project-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+
+        .project-card h3 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background-color: #1e293b;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        a.btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #334155;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Manthan Prabhu</h1>
+            <p class="subtitle">2nd Year CS&IT Student @ REVA University</p>
+            <p>Bengaluru, Karnataka, India</p>
+        </header>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I am a 3rd-semester B.Tech Computer Science & Information Technology student at REVA University with a strong interest in software development, core programming, and data structures. I enjoy building structured coding portfolios, exploring algorithm trade-offs, and building software projects.</p>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects & Artifacts</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>LeetCode Solutions Portfolio</h3>
+                    <p>Documented algorithmic problem-solving solutions with time and space complexity analysis written primarily in C and C++.</p>
+                    <a href="https://github.com/Manthan080507/leetcode-solutions" class="btn" target="_blank">View Repository</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>HackerRank 3rd Sem Portfolio</h3>
+                    <p>Curated solutions for semester coding challenges covering core data structures and programming logic.</p>
+                    <a href="https://github.com/Manthan080507/HackerRank-3rdSem-Portfolio" class="btn" target="_blank">View Repository</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Git & Pair-Programming Workflow</h3>
+                    <p>Practiced collaborative software development using Git branch strategies, pull requests, and code reviews.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-list">
+                <span class="skill-tag">C</span>
+                <span class="skill-tag">C++</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">Data Structures</span>
+                <span class="skill-tag">Git & GitHub</span>
+                <span class="skill-tag">VS Code</span>
+            </div>
+        </section>
+
+        <section id="goal">
+            <h2>Career Goal</h2>
+            <p>Seeking software development internship opportunities where I can apply my algorithmic problem-solving abilities, contribute to real-world codebases, and grow as a software engineer.</p>
+        </section>
+
+        <footer>
+            <p>Connect with me on <a href="https://github.com/Manthan080507" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/manthanprabhu08" target="_blank">LinkedIn</a></p>
+            <p>© 2026 Manthan Prabhu. Built using AI Prompting for Portfolio Building B25CS0311.</p>
+        </footer>
+    </div>
+</body>
+</html>
