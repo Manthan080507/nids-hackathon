@@ -142,6 +142,46 @@ with tab3:
 with tab4:
     st.subheader("Upload CSV Dataset for Batch Analysis")
     uploaded_file = st.file_uploader("Choose a CSV file", type=["csv"])
+    
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
-        st.write("Dataset Preview:", df.head())
+        
+        st.markdown("---")
+        st.subheader("📊 Plain-English Security Summary")
+        
+        # Calculate human-friendly security indicators
+        total_packets = len(df)
+        
+        # Connection Failure Rate (dst_host_serror_rate)
+        if 'dst_host_serror_rate' in df.columns:
+            serror_pct = df['dst_host_serror_rate'].mean() * 100
+        else:
+            serror_pct = 0.0
+            
+        # Rejection Rate (dst_host_rerror_rate)
+        if 'dst_host_rerror_rate' in df.columns:
+            rerror_pct = df['dst_host_rerror_rate'].mean() * 100
+        else:
+            rerror_pct = 0.0
+
+        # Display Key Summary Cards
+        sc1, sc2, sc3 = st.columns(3)
+        with sc1:
+            st.metric("Packets Analyzed", f"{total_packets:,}")
+        with sc2:
+            st.metric("Connection Failure Rate", f"{serror_pct:.1f}%")
+        with sc3:
+            st.metric("Connection Rejection Rate", f"{rerror_pct:.1f}%")
+            
+        # Overall Threat Verdict
+        st.subheader("Threat Verdict")
+        if serror_pct > 30:
+            st.error("🚨 **HIGH RISK DETECTED:** Abnormal connection failure rate! This indicates active Port Scanning or Denial of Service (DoS) probe activity.")
+        elif rerror_pct > 30:
+            st.warning("⚠️ **MEDIUM RISK:** Elevated rejection rate detected. Potential network misconfiguration or unauthorized connection attempts.")
+        else:
+            st.success("✅ **CLEAN:** Network traffic patterns look normal. No suspicious scanning detected.")
+            
+        # Hide raw technical numbers in a dropdown
+        with st.expander("🔍 View Raw Technical Data (For Engineers & Analysts)"):
+            st.dataframe(df, use_container_width=True)
