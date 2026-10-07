@@ -1,9 +1,8 @@
 import streamlit as st
-import socket
 import psutil
 import pandas as pd
 import numpy as np
-import time
+import requests
 
 # ==========================================
 # 1. PAGE CONFIGURATION & SEO METADATA
@@ -37,24 +36,45 @@ meta_tags = """
 st.markdown(meta_tags, unsafe_allow_html=True)
 
 # ==========================================
-# 2. DASHBOARD HEADER & SYSTEM METRICS
+# 2. DYNAMIC CLIENT IP & GEOLOCATION FETCH
 # ==========================================
-st.title("🛡️ Real-Time Network Intrusion Detection System")
-st.caption("Live Local Traffic Sniffer • CSV Dataset Inspector • Real Threat Intelligence")
+@st.cache_data(ttl=600)
+def get_client_info():
+    try:
+        response = requests.get('https://ipapi.co/json/', timeout=5)
+        if response.status_code == 200:
+            data = response.json()
+            return {
+                "ip": data.get("ip", "Remote Client"),
+                "city": data.get("city", "Unknown City"),
+                "country": data.get("country_name", "Unknown Country"),
+                "org": data.get("org", "Unknown Network")
+            }
+    except Exception:
+        pass
+    return {"ip": "Remote Client Node", "city": "Remote", "country": "Location", "org": "Cloud Network"}
 
-# Fetch System Metrics
-hostname = socket.gethostname()
+client = get_client_info()
+node_display_name = f"{client['ip']} ({client['city']}, {client['country']})"
+
+# Network Metrics
 net_io = psutil.net_io_counters()
 bytes_sent_mb = net_io.bytes_sent / (1024 * 1024)
 bytes_recv_mb = net_io.bytes_recv / (1024 * 1024)
 active_connections = len(psutil.net_connections())
 
-st.header("Local Network Gateway Status")
+# ==========================================
+# 3. DASHBOARD HEADER & SYSTEM METRICS
+# ==========================================
+st.title("🛡️ Real-Time Network Intrusion Detection System")
+st.caption("Live Traffic Inspector • CSV Dataset Inspector • Real Threat Intelligence")
+
+st.header("Network Gateway & Client Status")
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    st.caption("System Hostname")
-    st.subheader(hostname)
+    st.caption("Connected Client / Node")
+    st.subheader(node_display_name)
 
 with col2:
     st.caption("Total Bytes Sent")
@@ -65,13 +85,13 @@ with col3:
     st.subheader(f"{bytes_recv_mb:.2f} MB")
 
 with col4:
-    st.caption("Active Connections")
+    st.caption("Active Network Connections")
     st.subheader(active_connections)
 
 st.markdown("---")
 
 # ==========================================
-# 3. NAVIGATION & SYSTEM MODULES
+# 4. NAVIGATION & SYSTEM MODULES
 # ==========================================
 tab1, tab2, tab3, tab4 = st.tabs([
     "🏠 Dashboard", 
@@ -85,7 +105,7 @@ with tab1:
     m_col1, m_col2, m_col3 = st.columns(3)
     
     with m_col1:
-        st.info("### 📡 Live Machine Sniffer\nCaptures real active network socket connections running on your computer right now.")
+        st.info("### 📡 Live Machine Sniffer\nInspects active network socket connections running on the connected node.")
     
     with m_col2:
         st.success("### 🔍 Single Packet Inspector\nManually inspect specific packet parameters to calculate threat vectors.")
@@ -96,7 +116,7 @@ with tab1:
 with tab2:
     st.subheader("Live Network Traffic Inspection")
     if st.button("Start Live Capture"):
-        st.write("Capturing active network interfaces...")
+        st.write(f"Capturing network interfaces for node: **{client['ip']}**...")
         connections = psutil.net_connections(kind='inet')
         conn_data = []
         for conn in connections[:10]:
